@@ -6,4 +6,4 @@ jdk:
 script: gradle build
 
 after_success:
-  - coveralls
+  - ./gradlew cobertura coveralls

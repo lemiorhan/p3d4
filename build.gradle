@@ -1,10 +1,27 @@
 apply plugin: "java"
 apply plugin: "idea"
+apply plugin: 'cobertura'
+apply plugin: 'com.github.kt3k.coveralls'
+
 //apply plugin: "application"
 
 repositories {
     mavenCentral()
 }
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'net.saliman:gradle-cobertura-plugin:2.0.0' // cobertura plugin
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.4.0'
+    }
+}
+
+cobertura.coverageFormats = ['html', 'xml'] // coveralls plugin depends on xml format report
+
 
 //======================================================================
 // CONFIGURATIONS
@@ -49,8 +66,8 @@ task cucumber(type: JavaExec) {
     args = ['-f', 'pretty', '--glue', 'behaviors', 'src/test/resources']
 }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = 2.0
+task createWrapper(type: Wrapper) {
+    gradleVersion = 2.4
 }
 
 //======================================================================
@@ -73,3 +90,4 @@ dependencies {
     compile  group: "ch.qos.logback", name: "logback-core", version: "1.1.2"
     compile  group: "ch.qos.logback", name: "logback-classic", version: "1.1.2"
 }
+

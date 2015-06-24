@@ -40,8 +40,4 @@ tmp/
 *.diff
 
 # Gradle generated
-.gradle/
 build/
-gradle/
-gradlew
-gradlew.bat
